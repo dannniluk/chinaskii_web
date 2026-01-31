@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 // ============================================
-// WORKS DATA - 15 portfolio items
+// WORKS DATA - 13 portfolio items
 // ============================================
 
 const videoData = [
@@ -9,7 +9,7 @@ const videoData = [
     id: 1, 
     title: 'Noir Study I', 
     year: '2026', 
-    image: './images/work-1.jpg', 
+    image: './images/work-2.jpg', 
     videoPreview: './images/video-previews/video-1.jpg',
     videoUrl: 'https://player.vimeo.com/video/1160520410',
   },
@@ -17,7 +17,7 @@ const videoData = [
     id: 2, 
     title: 'Vertical Dreams', 
     year: '2026', 
-    image: './images/work-2.jpg', 
+    image: './images/work-3.jpg', 
     videoPreview: './images/video-previews/video-2.jpg',
     videoUrl: 'https://player.vimeo.com/video/1160520503',
   },
@@ -25,7 +25,7 @@ const videoData = [
     id: 3, 
     title: 'Light Trails', 
     year: '2026', 
-    image: './images/work-3.jpg', 
+    image: './images/work-4.jpg', 
     videoPreview: './images/video-previews/video-3.jpg',
     videoUrl: 'https://player.vimeo.com/video/1160520383',
   },
@@ -33,7 +33,7 @@ const videoData = [
     id: 4, 
     title: 'Urban Shadows', 
     year: '2026', 
-    image: './images/work-4.jpg', 
+    image: './images/work-5.jpg', 
     videoPreview: './images/video-previews/video-4.jpg',
     videoUrl: 'https://player.vimeo.com/video/1160520461',
   },
@@ -41,23 +41,21 @@ const videoData = [
     id: 5, 
     title: 'Midnight Objects', 
     year: '2026', 
-    image: './images/work-5.jpg', 
+    image: './images/work-6.jpg', 
     videoPreview: './images/video-previews/video-5.jpg',
     videoUrl: 'https://player.vimeo.com/video/1160520441',
   },
 ];
 
 const photoData = [
-  { id: 6, title: 'Dark Horizons', year: '2026', image: './images/work-6.jpg' },
-  { id: 7, title: 'Noir Fashion', year: '2026', image: './images/work-7.jpg' },
-  { id: 8, title: 'Smoke Forms', year: '2026', image: './images/work-8.jpg' },
-  { id: 9, title: 'City Rain', year: '2026', image: './images/work-9.jpg' },
-  { id: 10, title: 'Liquid Metal', year: '2026', image: './images/work-10.jpg' },
-  { id: 11, title: 'Dark Flora', year: '2026', image: './images/work-11.jpg' },
-  { id: 12, title: 'Mystery Figure', year: '2026', image: './images/work-12.jpg' },
-  { id: 13, title: 'Geometric Noir', year: '2026', image: './images/work-13.jpg' },
-  { id: 14, title: 'Night Waves', year: '2026', image: './images/work-14.jpg' },
-  { id: 15, title: 'Light Painting', year: '2026', image: './images/work-15.jpg' },
+  { id: 6, title: 'Dark Horizons', year: '2026', image: './images/work-7.jpg' },
+  { id: 7, title: 'Noir Fashion', year: '2026', image: './images/work-8.jpg' },
+  { id: 8, title: 'Smoke Forms', year: '2026', image: './images/work-10.jpg' },
+  { id: 9, title: 'City Rain', year: '2026', image: './images/work-11.jpg' },
+  { id: 10, title: 'Liquid Metal', year: '2026', image: './images/work-12.jpg' },
+  { id: 11, title: 'Dark Flora', year: '2026', image: './images/work-13.jpg' },
+  { id: 12, title: 'Mystery Figure', year: '2026', image: './images/work-14.jpg' },
+  { id: 13, title: 'Geometric Noir', year: '2026', image: './images/work-15.jpg' },
 ];
 
 export function Works() {
