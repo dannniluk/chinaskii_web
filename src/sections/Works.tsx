@@ -56,6 +56,7 @@ const photoData = [
   { id: 11, title: 'Dark Flora', year: '2026', image: './images/work-13.jpg' },
   { id: 12, title: 'Mystery Figure', year: '2026', image: './images/work-14.jpg' },
   { id: 13, title: 'Geometric Noir', year: '2026', image: './images/work-15.jpg' },
+  { id: 14, title: 'New Work', year: '2026', image: './images/work-16.png' },
 ];
 
 export function Works() {

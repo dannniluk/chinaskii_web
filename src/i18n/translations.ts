@@ -29,7 +29,7 @@ export const translations = {
     // Atelier
     atelier: {
       title: 'Обо мне',
-      description: 'AI creator из Санкт-Петербурга. Независимый визуальный художник, специализирующийся на нуарной эстетике и атмосферном сторителлинге. Создаю визуал через AI и motion design — где технологии встречаются с тенями.',
+      description: 'ai creator & motion designer / saint p.\n\nспециализируюсь на создании сложного визуального контента с характером. фокус на нуарной стилистике, драматичном свете и атмосферном сторителлинге. использую передовые инструменты генерации в связке с классической анимацией, чтобы создавать проекты, которые удерживают внимание.',
       status: 'Статус',
       statusValue: 'Частный креатор / Открыт для заказов',
       tools: 'Инструменты',
@@ -80,7 +80,7 @@ export const translations = {
     // Atelier
     atelier: {
       title: 'About',
-      description: 'AI creator from Saint P. Independent visual artist specializing in noir aesthetics and atmospheric storytelling. Creating visuals through AI and motion design — where technology meets the shadows.',
+      description: 'ai creator & motion designer / saint p.\n\nspecializing in creating complex visual content with character. focus on noir aesthetics, dramatic lighting and atmospheric storytelling. using advanced generation tools combined with classical animation to create projects that capture attention.',
       status: 'Status',
       statusValue: 'Private creator / Open for commissions',
       tools: 'Tools & Stack',

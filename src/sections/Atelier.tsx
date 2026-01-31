@@ -69,7 +69,7 @@ export function Atelier() {
         <div className="atelier-info-compact">
           <h2 className="atelier-heading-compact reveal-element">{t('atelier.title')}</h2>
           
-          <p className="atelier-text-compact reveal-element stagger-1">
+          <p className="atelier-text-compact reveal-element stagger-1" style={{ whiteSpace: 'pre-line' }}>
             {t('atelier.description')}
           </p>
           
