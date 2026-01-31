@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 
 // ============================================
 // WORKS DATA - 15 portfolio items
@@ -63,32 +63,6 @@ const photoData = [
 export function Works() {
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
   const [imageErrors, setImageErrors] = useState<Set<number>>(new Set());
-  const [activeSection, setActiveSection] = useState<'video' | 'photo'>('video');
-  const videoRef = useRef<HTMLDivElement>(null);
-  const photoRef = useRef<HTMLDivElement>(null);
-
-  // Track which section is visible
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            if (entry.target.id === 'video-section') {
-              setActiveSection('video');
-            } else if (entry.target.id === 'photo-section') {
-              setActiveSection('photo');
-            }
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
-
-    if (videoRef.current) observer.observe(videoRef.current);
-    if (photoRef.current) observer.observe(photoRef.current);
-
-    return () => observer.disconnect();
-  }, []);
 
   const handleImageError = (workId: number) => {
     setImageErrors(prev => new Set(prev).add(workId));
@@ -96,15 +70,8 @@ export function Works() {
 
   return (
     <section id="works" className="works-page">
-      {/* Fixed Section Header */}
-      <div className="section-header-fixed">
-        <h2 className="section-title-fixed">
-          {activeSection === 'video' ? 'VIDEO' : 'PHOTO'}
-        </h2>
-      </div>
-
       {/* VIDEO Section */}
-      <div id="video-section" ref={videoRef} className="video-section">
+      <div id="video-section" className="video-section">
         <div className="section-header-anchor">
           <h2 className="section-title">VIDEO</h2>
         </div>
@@ -126,7 +93,7 @@ export function Works() {
       </div>
 
       {/* PHOTO Section */}
-      <div id="photo-section" ref={photoRef} className="photo-section">
+      <div id="photo-section" className="photo-section">
         <div className="section-header-anchor">
           <h2 className="section-title">PHOTO</h2>
         </div>
