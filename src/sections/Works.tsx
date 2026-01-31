@@ -1,273 +1,148 @@
 import { useState, useRef, useEffect } from 'react';
-import { useLanguage } from '../i18n/LanguageContext';
 
 // ============================================
 // WORKS DATA - 15 portfolio items
 // ============================================
 
-const worksData = [
+const videoData = [
   { 
     id: 1, 
     title: 'Noir Study I', 
     year: '2026', 
-    category: 'AI ART', 
-    type: 'video',
     image: './images/work-1.jpg', 
-    videoPreview: './images/video-preview-1.jpg',
+    videoPreview: './images/video-previews/video-1.jpg',
     videoUrl: 'https://player.vimeo.com/video/1160520410',
   },
   { 
     id: 2, 
     title: 'Vertical Dreams', 
     year: '2026', 
-    category: 'VIDEO', 
-    type: 'video',
     image: './images/work-2.jpg', 
-    videoPreview: './images/video-preview-2.jpg',
+    videoPreview: './images/video-previews/video-2.jpg',
     videoUrl: 'https://player.vimeo.com/video/1160520503',
   },
   { 
     id: 3, 
     title: 'Light Trails', 
     year: '2026', 
-    category: 'AI ART', 
-    type: 'video',
     image: './images/work-3.jpg', 
-    videoPreview: './images/video-preview-3.jpg',
+    videoPreview: './images/video-previews/video-3.jpg',
     videoUrl: 'https://player.vimeo.com/video/1160520383',
   },
   { 
     id: 4, 
     title: 'Urban Shadows', 
     year: '2026', 
-    category: 'PHOTO', 
-    type: 'video',
     image: './images/work-4.jpg', 
-    videoPreview: './images/video-preview-4.jpg',
+    videoPreview: './images/video-previews/video-4.jpg',
     videoUrl: 'https://player.vimeo.com/video/1160520461',
   },
   { 
     id: 5, 
     title: 'Midnight Objects', 
     year: '2026', 
-    category: 'AI ART', 
-    type: 'video',
     image: './images/work-5.jpg', 
-    videoPreview: './images/video-preview-5.jpg',
+    videoPreview: './images/video-previews/video-5.jpg',
     videoUrl: 'https://player.vimeo.com/video/1160520441',
-  },
-  { 
-    id: 6, 
-    title: 'Dark Horizons', 
-    year: '2026', 
-    category: 'VIDEO', 
-    type: 'static',
-    image: './images/work-6.jpg',
-  },
-  { 
-    id: 7, 
-    title: 'Noir Fashion', 
-    year: '2026', 
-    category: 'AI ART', 
-    type: 'static',
-    image: './images/work-7.jpg',
-  },
-  { 
-    id: 8, 
-    title: 'Smoke Forms', 
-    year: '2026', 
-    category: 'VIDEO', 
-    type: 'static',
-    image: './images/work-8.jpg',
-  },
-  { 
-    id: 9, 
-    title: 'City Rain', 
-    year: '2026', 
-    category: 'PHOTO', 
-    type: 'static',
-    image: './images/work-9.jpg',
-  },
-  { 
-    id: 10, 
-    title: 'Liquid Metal', 
-    year: '2026', 
-    category: 'AI ART', 
-    type: 'static',
-    image: './images/work-10.jpg',
-  },
-  { 
-    id: 11, 
-    title: 'Dark Flora', 
-    year: '2026', 
-    category: 'AI ART', 
-    type: 'static',
-    image: './images/work-11.jpg',
-  },
-  { 
-    id: 12, 
-    title: 'Mystery Figure', 
-    year: '2026', 
-    category: 'VIDEO', 
-    type: 'static',
-    image: './images/work-12.jpg',
-  },
-  { 
-    id: 13, 
-    title: 'Geometric Noir', 
-    year: '2026', 
-    category: 'AI ART', 
-    type: 'static',
-    image: './images/work-13.jpg',
-  },
-  { 
-    id: 14, 
-    title: 'Night Waves', 
-    year: '2026', 
-    category: 'PHOTO', 
-    type: 'static',
-    image: './images/work-14.jpg',
-  },
-  { 
-    id: 15, 
-    title: 'Light Painting', 
-    year: '2026', 
-    category: 'VIDEO', 
-    type: 'static',
-    image: './images/work-15.jpg',
   },
 ];
 
-type FilterCategory = 'ALL' | 'VIDEO' | 'AI ART' | 'PHOTO';
+const photoData = [
+  { id: 6, title: 'Dark Horizons', year: '2026', image: './images/work-6.jpg' },
+  { id: 7, title: 'Noir Fashion', year: '2026', image: './images/work-7.jpg' },
+  { id: 8, title: 'Smoke Forms', year: '2026', image: './images/work-8.jpg' },
+  { id: 9, title: 'City Rain', year: '2026', image: './images/work-9.jpg' },
+  { id: 10, title: 'Liquid Metal', year: '2026', image: './images/work-10.jpg' },
+  { id: 11, title: 'Dark Flora', year: '2026', image: './images/work-11.jpg' },
+  { id: 12, title: 'Mystery Figure', year: '2026', image: './images/work-12.jpg' },
+  { id: 13, title: 'Geometric Noir', year: '2026', image: './images/work-13.jpg' },
+  { id: 14, title: 'Night Waves', year: '2026', image: './images/work-14.jpg' },
+  { id: 15, title: 'Light Painting', year: '2026', image: './images/work-15.jpg' },
+];
 
 export function Works() {
-  const [activeFilter, setActiveFilter] = useState<FilterCategory>('ALL');
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
   const [imageErrors, setImageErrors] = useState<Set<number>>(new Set());
-  const [headerHidden, setHeaderHidden] = useState(false);
-  const lastScrollRef = useRef(0);
-  const heroHeightRef = useRef(0);
-  const { t } = useLanguage();
+  const [activeSection, setActiveSection] = useState<'video' | 'photo'>('video');
+  const videoRef = useRef<HTMLDivElement>(null);
+  const photoRef = useRef<HTMLDivElement>(null);
 
-  const filters: FilterCategory[] = ['ALL', 'VIDEO', 'AI ART', 'PHOTO'];
-
-  const filteredWorks = activeFilter === 'ALL' 
-    ? worksData 
-    : worksData.filter(work => work.category === activeFilter);
-
-  // Smart header with debounce and threshold
+  // Track which section is visible
   useEffect(() => {
-    const hero = document.getElementById('hero');
-    if (hero) {
-      heroHeightRef.current = hero.offsetHeight;
-    }
-
-    let ticking = false;
-    const scrollThreshold = 150;
-
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const currentScroll = window.pageYOffset;
-          const heroHeight = heroHeightRef.current;
-          
-          // Show header when in hero section
-          if (currentScroll < heroHeight + 100) {
-            setHeaderHidden(false);
-            lastScrollRef.current = currentScroll;
-            ticking = false;
-            return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (entry.target.id === 'video-section') {
+              setActiveSection('video');
+            } else if (entry.target.id === 'photo-section') {
+              setActiveSection('photo');
+            }
           }
-          
-          // Only process if scroll delta > threshold
-          if (Math.abs(currentScroll - lastScrollRef.current) <= scrollThreshold) {
-            ticking = false;
-            return;
-          }
-          
-          if (currentScroll > lastScrollRef.current) {
-            // Scroll down - hide
-            setHeaderHidden(true);
-          } else {
-            // Scroll up - show
-            setHeaderHidden(false);
-          }
-          
-          lastScrollRef.current = currentScroll <= 0 ? 0 : currentScroll;
-          ticking = false;
         });
-        ticking = true;
-      }
-    };
+      },
+      { threshold: 0.3 }
+    );
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    if (videoRef.current) observer.observe(videoRef.current);
+    if (photoRef.current) observer.observe(photoRef.current);
+
+    return () => observer.disconnect();
   }, []);
 
-  // Handle image load error
   const handleImageError = (workId: number) => {
     setImageErrors(prev => new Set(prev).add(workId));
   };
 
-  // Get filter label
-  const getFilterLabel = (filter: FilterCategory): string => {
-    const labels: Record<FilterCategory, string> = {
-      'ALL': t('works.filters.all'),
-      'VIDEO': t('works.filters.motion'),
-      'AI ART': 'AI ART',
-      'PHOTO': t('works.filters.static'),
-    };
-    return labels[filter];
-  };
-
   return (
-    <section id="works" className="gallery-section">
-      {/* Sticky Gallery Header */}
-      <div className={`gallery-header ${headerHidden ? 'hidden' : ''}`}>
-        <h2 className="gallery-title">{t('works.title')}</h2>
-        
-        <div className="gallery-filters">
-          {filters.map((filter) => (
-            <button
-              key={filter}
-              onClick={() => setActiveFilter(filter)}
-              className={`gallery-filter-btn ${activeFilter === filter ? 'active' : ''}`}
-            >
-              {getFilterLabel(filter)}
-            </button>
-          ))}
-        </div>
+    <section id="works" className="works-page">
+      {/* Fixed Section Header */}
+      <div className="section-header-fixed">
+        <h2 className="section-title-fixed">
+          {activeSection === 'video' ? 'VIDEO' : 'PHOTO'}
+        </h2>
       </div>
 
-      {/* Gallery Grid - Unified for all types */}
-      <div className="gallery-grid-container">
-        {filteredWorks.map((work) => (
-          work.type === 'video' ? (
+      {/* VIDEO Section */}
+      <div id="video-section" ref={videoRef} className="video-section">
+        <div className="section-header-anchor">
+          <h2 className="section-title">VIDEO</h2>
+        </div>
+        
+        <div className="video-grid">
+          {videoData.map((work) => (
             <VideoItem 
               key={work.id}
               work={work}
               onError={() => handleImageError(work.id)}
             />
-          ) : (
-            <StaticItem
+          ))}
+        </div>
+      </div>
+
+      {/* Divider */}
+      <div className="section-divider">
+        <span className="divider-line"></span>
+      </div>
+
+      {/* PHOTO Section */}
+      <div id="photo-section" ref={photoRef} className="photo-section">
+        <div className="section-header-anchor">
+          <h2 className="section-title">PHOTO</h2>
+        </div>
+        
+        <div className="photo-grid">
+          {photoData.map((work) => (
+            <PhotoItem
               key={work.id}
               work={work}
               onError={() => handleImageError(work.id)}
               onClick={() => setLightboxImage(work.image)}
               hasError={imageErrors.has(work.id)}
             />
-          )
-        ))}
-      </div>
-
-      {/* Empty State */}
-      {filteredWorks.length === 0 && (
-        <div className="flex items-center justify-center py-20">
-          <p className="text-[#9A9894] font-body text-sm">
-            {t('works.empty')}
-          </p>
+          ))}
         </div>
-      )}
+      </div>
 
       {/* Lightbox */}
       {lightboxImage && (
@@ -282,12 +157,12 @@ export function Works() {
   );
 }
 
-// Video Item Component with badge and play overlay
+// Video Item Component
 function VideoItem({ 
   work, 
   onError 
 }: { 
-  work: typeof worksData[0]; 
+  work: typeof videoData[0]; 
   onError: () => void;
 }) {
   return (
@@ -295,16 +170,14 @@ function VideoItem({
       href={work.videoUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="video-gallery-item"
+      className="video-item"
     >
-      <div className="video-gallery-preview">
-        {/* Try video preview first, fall back to main image */}
+      <div className="video-preview">
         <img 
           src={work.videoPreview || work.image}
           alt={work.title}
-          className="video-gallery-thumb"
+          className="video-thumb"
           onError={(e) => {
-            // If video preview fails, use main image
             const img = e.target as HTMLImageElement;
             if (img.src !== work.image) {
               img.src = work.image;
@@ -315,12 +188,8 @@ function VideoItem({
           loading="lazy"
         />
         
-        {/* Video Badge */}
-        <div className="video-badge">VIDEO</div>
-        
-        {/* Play Overlay */}
-        <div className="play-overlay">
-          <div className="play-icon-circle">
+        <div className="video-play-overlay">
+          <div className="play-button">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <polygon points="5 3 19 12 5 21 5 3"></polygon>
             </svg>
@@ -331,34 +200,34 @@ function VideoItem({
   );
 }
 
-// Static Item Component
-function StaticItem({ 
+// Photo Item Component
+function PhotoItem({ 
   work, 
   onError,
   onClick,
   hasError
 }: { 
-  work: typeof worksData[0]; 
+  work: typeof photoData[0]; 
   onError: () => void;
   onClick: () => void;
   hasError: boolean;
 }) {
   return (
     <div 
-      className="static-gallery-item"
+      className="photo-item"
       onClick={onClick}
     >
       <img
         src={work.image}
         alt={work.title}
-        className="static-gallery-thumb"
+        className="photo-thumb"
         loading="lazy"
         onError={onError}
       />
       
       {hasError && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black/80 z-20">
-          <p className="text-red-500 text-xs text-center p-4">
+        <div className="error-overlay">
+          <p className="error-text">
             Failed to load<br/>work-{work.id}
           </p>
         </div>
