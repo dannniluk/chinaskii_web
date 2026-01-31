@@ -5,9 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc --noEmit && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
